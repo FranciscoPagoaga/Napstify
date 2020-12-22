@@ -1,5 +1,5 @@
-const Albums = artifacts.require("Albums");
+const Napstify = artifacts.require("Napstify");
 
 module.exports = function (deployer) {
-  deployer.deploy(Albums);
+  deployer.deploy(Napstify);
 };

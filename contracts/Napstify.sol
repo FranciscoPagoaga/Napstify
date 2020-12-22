@@ -1,11 +1,12 @@
 pragma solidity ^0.5.0;
 
-contract Albums {
+contract Napstify {
     uint public albumCount = 0;
     uint public songCount = 0;
+
     struct Album {
         uint id;
-        string name;
+        string albumName;
         string artist;
     }
 
@@ -17,15 +18,16 @@ contract Albums {
         uint albumid;
     }
 
-    mapping(uint => Album) public albums;
+    mapping(uint => Album) public albums; 
 
     mapping(uint => Song) public songs;
 
-    constructor() public {}
+    constructor() public {
+    }
 
-    function createAlbum(string memory name, string memory artist) public {
+    function createAlbum(string memory albumName, string memory artist) public {
         albumCount++;
-        albums[albumCount] = Album(albumCount, name, artist);
+        albums[albumCount] = Album(albumCount, albumName, artist);
     }
 
     function createSong(

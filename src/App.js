@@ -1,26 +1,21 @@
 import { useEffect, useState } from "react";
 import Login from "./Views/Login";
-import Web3 from "web3";
-import { ALBUM_ABI, ALBUM_ADDRESS } from "./config";
+import AlbumPreview from "./Views/AlbumPreview";
+import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
+
 
 function App() {
   const [account, setAccount] = useState([]);
 
-  const loadBlockchainData = async () => {
-    const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
-    const network = await web3.eth.net.getNetworkType();
-    const accounts = await web3.eth.getAccounts();
-    setAccount(accounts);
-    const albums = new web3.eth.Contract(ALBUM_ABI, ALBUM_ADDRESS);
-    console.log({ albums });
-  };
-
-  useEffect(() => {
-    loadBlockchainData();
-  }, []);
-
   return (
-  <Login/>
+    <Router>
+      <Route exact path="/">
+        <Login />
+      </Route>
+      <Route exact path="/Albums">
+        <AlbumPreview />
+      </Route>
+    </Router>
   );
 }
 
